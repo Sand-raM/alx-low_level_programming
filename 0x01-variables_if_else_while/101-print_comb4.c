@@ -1,8 +1,9 @@
 #include <stdio.h>
 /**
- * main - Prog Entry point
+ * main - Prog prints all possible different combinations of three digits
  * Return: 0 (Success)
- */int main(void)
+ */
+int main(void)
 {
 	int ones = '0';
 	int tens = '0';
@@ -12,7 +13,7 @@
 	{
 		for (tens = '0'; tens <= '9'; tens++)
 		{
-			for (ones = '0'; ones <= ones++)
+			for (ones = '0'; ones <= '9'; ones++)
 			{
 				if (!((ones == tens) || (tens == hundreds) ||
 							(tens > ones) || (hundreds > tens)))
