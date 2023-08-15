@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * AbSV - Computes the absolute value of an integer
+ * _abs - Computes the absolute value of an integer
  * @c: Number to be cuomputed
  * Return: Absolute value of num or zero
  */
