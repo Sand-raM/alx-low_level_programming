@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_diagonal - draws a diagonal line on the terminal
+ * print_diagonal - draws a straight line on the terminal
  * @n: is the number of times the character _ should be printed
  */
 void print_diagonal(int n)
