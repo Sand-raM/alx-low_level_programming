@@ -6,20 +6,18 @@
  * @size: number of elements in array
  * @cmp: function to compare values
  *
- * Return: pointer to the first corresponding element
- * -1 if no elements match or when size is less than 0
+ * Return: 0
  */
 int int_index(int *array, int size, int (*cmp)(int))
 {
-	int i = 0;
+	int i;
 
-	if (array == NULL || cmp == NULL)
+	if (array == NULL || size <= 0 || cmp == NULL)
 		return (-1);
-	for (; i < size; i++)
+	for (i = 0; i < size; i++)
 	{
-		if (cmp(array[i] != 0)
-				return (i);
-				}
-				return (-1);
-				}
-
+		if (cmp(array[i]))
+			return (i);
+	}
+	return (-1);
+}
