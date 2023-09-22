@@ -14,28 +14,32 @@
 list_t *add_node(list_t **head, const char *str)
 {
 	list_t *new;
-	char *dup_str;
-	int len;
 
+	if (!head)
+		return (0);
 	new = malloc(sizeof(list_t));
-	if (new == NULL)
-		return (NULL);
-
-	dup_str = strdup(str);
-	if (dup_str == NULL)
-	{
-		free(new);
-		return (NULL);
-	}
-
-	for (len = 0; str[len];)
-		len++;
-
-	new->str = dup_str;
-	new->len = len;
+	if (!new)
+		return (0);
+	new->str = strdup(str);
+	new->len = _strlen((char *)str);
 	new->next = *head;
-
 	*head = new;
 
-	return (new);
+	return (*head);
+}
+/**
+* _strlen - finding the lenght of a string.
+* @s: first pointer
+* Return: it returns the length of the string.
+*/
+int _strlen(char *s)
+{
+	int str;
+
+	str = 0;
+	while (s[str] != '\0')
+	{
+		str++;
+	}
+	return (str);
 }
