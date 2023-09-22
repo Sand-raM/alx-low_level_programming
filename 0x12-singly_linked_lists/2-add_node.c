@@ -2,41 +2,50 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-/**
-* _strlen - finding the lenght of a string.
-* @s: first pointer
-* Return: it returns the length of the string.
-*/
-int _strlen(char *s)
-{
-	int str;
 
-	str = 0;
-	while (s[str] != '\0')
-	{
-		str++;
-	}
-	return (str);
-}
 /**
-* add_node -  adds a new node at the beginning of a list_t list.
-* @head: pointer to the addres of head
-* @str: pointer to the string of each new node
-* Return: addres to the new head node
-*/
-list_t *add_node(list_t **head, const char *str)
+ * add_node_end - Adds a new node at the end
+ * of a list_t list.
+ * @head: A pointer the head of the list_t list.
+ * @str: The string to be added to the list_t list.
+ *
+ * Return: If the function fails - NULL.
+ * Otherwise - the address of the new element.
+ */
+list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *new;
+	char *dup;
+	int len;
+	list_t *new, *last;
 
-	if (!head)
-		return (0);
 	new = malloc(sizeof(list_t));
-	if (!new)
-		return (0);
-	new->str = strdup(str);
-	new->len = _strlen((char *)str);
-	new->next = *head;
-	*head = new;
+	if (new == NULL)
+		return (NULL);
+
+	dup = strdup(str);
+	if (str == NULL)
+	{
+		free(new);
+		return (NULL);
+	}
+
+	for (len = 0; str[len];)
+		len++;
+
+	new->str = dup;
+	new->len = len;
+	new->next = NULL;
+
+	if (*head == NULL)
+		*head = new;
+
+	else
+	{
+		last = *head;
+		while (last->next != NULL)
+			last = last->next;
+		last->next = new;
+	}
 
 	return (*head);
 }
