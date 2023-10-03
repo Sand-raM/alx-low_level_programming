@@ -15,22 +15,19 @@ int append_text_to_file(const char *filename, char *text_content)
 {
 	int i, c, fd;
 
-	if (filename != NULL)
-		fd = open(filename, O_WRONLY | O_APPEND);
-	else
+	if (!filename)
 		return (-1);
-	if (fd == -1)
+	i = open(filename, O_WRONLY | O_APPEND);
+	if (i == -1)
 		return (-1);
-	if (text_content != NULL)
+	if (text_content)
 	{
-		while (text_content[i] != '\0')
-			i++;
+		for (c = 0; text_content[c]; c++)
+			;
+		fd = write(i, text_content, c);
+		if (fd == -1)
+			return (-1);
 	}
-	else
-		return (1);
-	c = write(fd, text_content, i);
-	if (c == -1)
-		return (-1);
-	close(fd);
+	close(i);
 	return (1);
 }
